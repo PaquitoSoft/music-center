@@ -154,10 +154,6 @@
 			<span class="title">{{title}}</span>
 		</div>
 	</script>
-    <!--
-    <span class="trackNameSeparator">-</span>
-    <span class="artist">{{artist}}</span>
-    -->
 	<script id="playlistTpl" type="text/template">
 		<div class="pl-artist">{{artist}} - {{title}}</div>
 		<table>
@@ -174,18 +170,18 @@
 			</tbody>
 		</table>
 	</script>
-	<!--
-	<span><a href="" download="{{artist}} - {{title}}.mp3"><i class="actionIcon download foundicon-inbox" title="Download"></i></a></span>
-	-->
-
+	
 	<!-- build:js js/mc-lib.js -->
+	
 	<!-- Third party libraries -->
 	<script src="js/lib/q.js"></script>
 	<script src="js/lib/moment.js"></script>
 	<script src="js/lib/mustache.js"></script>
+	
 	<!-- endbuild -->
 
 	<!-- build:js js/mc.js -->
+	
 	<!-- Main application manager -->
 	<script src="js/core.js"></script>
 
@@ -204,16 +200,22 @@
 	<script src="js/modules/seeker.js"></script>
 	<script src="js/modules/search-results.js"></script>
 	<script src="js/modules/player.js"></script>
+
 	<!-- endbuild -->
 	
-	<!--
-	<script src="dist/scripts/mc-0.1.0.min.js"></script>
-	-->
-
 	<script>
 		MusicCenter.init({
 			appVersion: '1.0.0'
 		});
+	</script>
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-44441660-1', 'music-center.herokuapp.com');
+		ga('send', 'pageview');
 	</script>
 
   </body>
