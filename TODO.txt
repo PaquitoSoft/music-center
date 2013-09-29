@@ -1,0 +1,23 @@
+===============================
+			TODO List
+===============================
+
+	+ Permitir la descarga de canciones o álbumes
+	+ Si hay un error reproduciendo un archivo para un tema, intentarlo con otro alternativo (si lo tenemos)	
+	+ Gestionar nombres de canciones muy grandes
+	+ Gestionar el alto de la playlist para que tenga un máximo a partir del cual aparezca la barra de scroll
+	+ El scroll vertical de la pantalla solo debería afectar a la zona de resultados
+	+ El icono para reproducir un album debería ser más un play que un add
+
+
+
+============================
+			DONE
+============================
+
++ Si no tenemos canciones de un tema, pasar al siguiente de la playlist
+		- Primero intentar buscar de nuevo con el título limpio (quitar textos entre paréntesis y/ o corchetes)
++ Gestionar correctamente el posicionamiento de la playlist (mostrar/ocultar)
++ Poder probar varios archivos de un mismo tema
++ Controles sobre cada canción de la playlist para reproducir y cambiar archivo
++ La cruz para reproducir un album solo debe aparecer si tenemos info sobre dicho album

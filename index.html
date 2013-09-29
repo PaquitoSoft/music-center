@@ -1,0 +1,220 @@
+
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+	<meta charset="utf-8">
+	<script type="text/javascript">
+		 window._pageInitialTime = Date.now();
+	</script>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Music Center</title>
+	<meta name="description" content="This is a place for you to find and play music">
+	<meta name="viewport" content="width=device-width">
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+	<!-- build:css styles/mc.css -->
+	<link rel="stylesheet" href="styles/foundation/foundation.css">
+	<link rel="stylesheet" href="styles/foundation/general_foundicons.css">
+	<link rel="stylesheet" href="styles/main.css">
+	<!-- endbuild -->
+  </head>
+  <body>
+	<div id="main">
+		<div class="row">
+			<div class="twelve columns">
+
+				<!-- TODO Wrap the header in an element -->
+				<h2>Your Music Center</h2>
+				<hr>
+				<p></p> <!-- TODO Remove this element -->
+
+				<!-- Seeker and player controls -->
+				<div class="four columns" data-comp="seekerModule" data-options="{foo: 'bar'}">
+					<div class="seeker">
+						<form id="searchForm">
+							<h3>Your query:</h3>
+							<input type="text" name="query" placeholder="Bring on the night" required autofocus="autofocus">
+							<button id="searchButton" type="submit" class="button">Search</button>
+						</form>
+					</div>
+					<div class="clearer"></div>
+					<div class="playerWrapper">
+						<div id="player"></div>
+					</div>
+				</div>
+
+				<!-- Search results -->
+				<div id="searchResults" class="eight columns" data-comp="searchResultsModule">
+					<div class="row">
+						<dl class="contained tabs">
+							<dd class="tab active" data-tabContent="artistResults">
+								<a href="#">Artists</a>
+							</dd>
+							<dd class="tab" data-tabContent="albumsResults">
+								<a href="#">Albums</a>
+							</dd>
+						</dl>
+
+						<ul class="tabs-content contained">
+
+							<!-- Artists search results -->
+							<li id="artistResults" class="tabContent">
+								<ul class="results">
+									<li class="row result">Waiting for you to search something...</li>
+								</ul>
+							</li>
+
+							<!-- Albumns search result -->
+							<li id="albumsResults" class="tabContent">
+								<ul class="results">
+									<li class="row result">Waiting for you to search something...</li>
+								</ul>
+							</li>
+
+						</ul>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div id="footer">
+		<section class="playlistWrapper" data-comp="playerModule">
+			<div class="currentTrack">
+			</div>
+			<div class="playlist">
+			</div>
+		</section>
+		<section class="playerWrapper">
+			<div id="player">
+                <audio class="audio" controls="">
+                </audio>         
+            </div>
+		</section>
+	</div>
+
+	<!-- Client side templates -->
+	<script id="artistSearchResultTpl" type="text/template">
+		{{#artists}}
+		<li class="row result artist" data-artistId="{{externalId}}" data-index="{{index}}">
+			<div class="four columns picture">
+				<img class="artistPicture" src="{{images.extralarge}}" height="150">
+			</div>
+			<div class="seven small-offset-2 columns info">
+				<div>
+					<div class="title">
+						<h2 title="Check artist albums out">{{name}}</h2>
+					</div>
+					{{#albums.length}}
+						<div class="subtitle">
+							<h5 class="subheader">{{albums.length}} albums</h5>
+						</div>
+					{{/albums.length}}
+				</div>
+			</div>
+			<hr class="resultSeparator">
+		</li>
+		{{/artists}}
+	</script>
+
+	<script id="albumSearchResultTpl" type="text/template">
+        {{#albums}}
+		<li class="row result album" data-albumId="externalId" data-index="{{index}}">
+			<div class="four columns picture">
+				<img class="albumPicture" src="{{images.extralarge}}" height="150">
+			</div>
+			<div class="seven small-offset-2 columns info">
+				<div class="title">
+					<h3>{{title}}</h3>
+				</div>
+				<div class="subtitle">
+					<h5 class="subheader">
+					</h5>
+				</div>
+			</div>
+			<div class="one columns actions">
+				<img class="actionIcon" src="styles/img/radio-icon.png" title="Play this album">
+			</div>
+			<hr class="resultSeparator">
+		</li>
+        {{/albums}}
+	</script>
+	<script id="albumExtraInfoTpl" type="text/template">
+		<h5 class="subheader">
+			<span class="albumReleaseDate">Release year: {{releaseYear}}&nbsp;</span>
+			<span class="albumTracksCount">({{tracks.length}} tracks)</span>
+		</h5>
+	</script>
+	<script id="trackItemTpl" type="text/template">
+		<div class="track">
+			<span class="title">{{title}}</span>
+		</div>
+	</script>
+    <!--
+    <span class="trackNameSeparator">-</span>
+    <span class="artist">{{artist}}</span>
+    -->
+	<script id="playlistTpl" type="text/template">
+		<div class="pl-artist">{{artist}} - {{title}}</div>
+		<table>
+			<tbody>
+				{{#tracks}}
+				<tr class="track" data-index="{{index}}">
+					<td class="title">{{title}}</title>
+					<td class="actions">
+						<span><i class="actionIcon change foundicon-refresh" title="Try another version"></i></span>
+						<span><i class="actionIcon play foundicon-right-arrow" title="Play"></i></span>
+					</td>
+				</tr>
+				{{/tracks}}
+			</tbody>
+		</table>
+	</script>
+	<!--
+	<span><a href="" download="{{artist}} - {{title}}.mp3"><i class="actionIcon download foundicon-inbox" title="Download"></i></a></span>
+	-->
+
+	<!-- build:js js/mc-lib.js -->
+	<!-- Third party libraries -->
+	<script src="js/lib/q.js"></script>
+	<script src="js/lib/moment.js"></script>
+	<script src="js/lib/mustache.js"></script>
+	<!-- endbuild -->
+
+	<!-- build:js js/mc.js -->
+	<!-- Main application manager -->
+	<script src="js/core.js"></script>
+
+	<!-- Reusable components -->
+	<script src="js/plugins/events-manager.js"></script>
+	<script src="js/plugins/dom.js"></script>
+	<script src="js/plugins/dom-element.js"></script>
+	<script src="js/plugins/ajax.js"></script>
+	<script src="js/plugins/utils.js"></script>
+	<script src="js/plugins/lastfm.js"></script>
+	<script src="js/plugins/models.js"></script>
+	<script src="js/plugins/templates.js"></script>
+	<script src="js/plugins/goear.js"></script>
+	
+	<!-- View controllers -->
+	<script src="js/modules/seeker.js"></script>
+	<script src="js/modules/search-results.js"></script>
+	<script src="js/modules/player.js"></script>
+	<!-- endbuild -->
+	
+	<!--
+	<script src="dist/scripts/mc-0.1.0.min.js"></script>
+	-->
+
+	<script>
+		MusicCenter.init({
+			appVersion: '1.0.0'
+		});
+	</script>
+
+  </body>
+</html>
