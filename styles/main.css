@@ -135,9 +135,14 @@
 	border-collapse: collapse;
 	border: none;
 	margin: 0;
-	background: #000;
+	background: #2c2c2c;
 }
-
+.playlist table tr {
+	border-bottom: 1px dotted #fff;
+}
+.playlist table tr:last-child {
+	border-bottom: none;
+}
 .playlist li {
 	list-style: none;
 	font-size: 16px;
@@ -166,21 +171,31 @@
 	margin-right: 5px;
 	cursor: pointer;
 }
-.playlist .track.current .title {
+.playlist .current .title {
 	color: #000;
 	background-color: #fff;
 	padding: 5px;
 	border-radius: 5px;
 }
 .playlist .actions {
-	width: 20%;
+	width: 22%;
 	text-align: right;
+}
+.playlist .actions div {
+	visibility: hidden;
 }
 .playlist .actions span {
 	margin-left: 5px;
 }
 .playlist .actions a {
 	color: #fff;
+}
+
+.loader {
+	position: absolute;
+	right: 115px;
+	bottom: 3px;
+	visibility: hidden;
 }
 
 .trackNameSeparator {

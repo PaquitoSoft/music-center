@@ -9,8 +9,10 @@
 		function searchHandler(event) {
 			event.preventDefault();
 			
+			dom.showLoader();
 			lastFm.searchArtist($searchText.value(), { withAlbums: true }).then(function(artists) {
 				events.trigger('new-search-results', artists);
+				dom.hideLoader();
 			});
 		}
 

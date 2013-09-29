@@ -8,7 +8,7 @@ var filesPath = __dirname + '/dist';
 var middleware = [];
 
 if (environment !== 'production') {
-	filesPath = __dirname;
+	// filesPath = __dirname;
 	middleware.push(connect.logger('dev'));
 }
 

@@ -15,7 +15,7 @@
 	<meta name="viewport" content="width=device-width">
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-	<link rel="stylesheet" href="styles/b09dd42d.mc.css">
+	<link rel="stylesheet" href="styles/8d0766ee.mc.css">
   </head>
   <body>
 	<div id="main">
@@ -33,13 +33,11 @@
 						<form id="searchForm">
 							<h3>Your query:</h3>
 							<input type="text" name="query" placeholder="Bring on the night" required autofocus="autofocus">
+							<img class="loader" src="styles/img/db3ab17e.loading43.gif">
 							<button id="searchButton" type="submit" class="button">Search</button>
 						</form>
 					</div>
 					<div class="clearer"></div>
-					<div class="playerWrapper">
-						<div id="player"></div>
-					</div>
 				</div>
 
 				<!-- Search results -->
@@ -158,8 +156,15 @@
 				<tr class="track" data-index="{{index}}">
 					<td class="title">{{title}}</title>
 					<td class="actions">
-						<span><i class="actionIcon change foundicon-refresh" title="Try another version"></i></span>
-						<span><i class="actionIcon play foundicon-right-arrow" title="Play"></i></span>
+						<div>
+							<span>
+								<a class="download" href="#" download="{{artist}} - {{title}}.mp3">
+									<i class="actionIcon foundicon-inbox" title="Download"></i>
+								</a>
+							</span>
+							<span><i class="actionIcon change foundicon-refresh" title="Try another version"></i></span>
+							<span><i class="actionIcon play foundicon-right-arrow" title="Play"></i></span>
+						</div>
 					</td>
 				</tr>
 				{{/tracks}}
@@ -169,7 +174,7 @@
 	
 	<script src="js/0966eb77.mc-lib.js"></script>
 
-	<script src="js/b25d7c95.mc.js"></script>
+	<script src="js/8df85a74.mc.js"></script>
 	
 	<script>
 		MusicCenter.init({

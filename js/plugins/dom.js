@@ -3,7 +3,8 @@
 	
 	core.register('plugins/dom', ['plugins/dom-element'], function DOMPlugin(mainContext, Element) {
 
-		var $document = new Element(document);
+		var $document = new Element(document),
+			$loader = findEl('.loader');
 
 		function findById(id) {
 			return $document.findById(id);
@@ -52,6 +53,15 @@
 			});
 		}
 
+		function showLoader() {
+			$loader.setStyle('visibility', 'visible');
+			return $loader;
+		}
+		function hideLoader() {
+			$loader.setStyle('visibility', 'hidden');
+			return $loader;
+		}
+
 		// Public API
 		return {
 			findById: findById,
@@ -59,7 +69,9 @@
 			findEls: findEls,
 			showEl: showEl,
 			hideEl: hideEl,
-			configureTabs: configureTabs
+			configureTabs: configureTabs,
+			showLoader: showLoader,
+			hideLoader: hideLoader
 		};
 
 	});

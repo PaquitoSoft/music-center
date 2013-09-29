@@ -30,13 +30,12 @@
 				$currentTrack.content(templates.render('trackItemTpl', track));
 
 				goear.getSongUrls(track).then(function(data) {
-					console.debug('These are the links received:', data);
-					if (data.tracks.length) {
-						availableFiles = data.tracks;
+					if (track.files && track.files.length) {
+						availableFiles = track.files;
 						currentTrackIndex = index;
 						currentFileIndex = 0;
 						
-						$player.el.src = availableFiles[currentFileIndex].link;
+						$player.el.src = availableFiles[currentFileIndex];
 						$player.el.load();
 						$player.el.play();
 						
@@ -44,8 +43,7 @@
 							$track.removeClass('current');
 						});
 						$track.addClass('current');
-						// $track.findEl('a').attr('href', availableFiles[currentFileIndex].link);
-
+						
 					} else {
 						// TODO Tell the user we did not find anything
 						console.warn("PlayerModule::play# No file found for track:", track);
@@ -67,12 +65,27 @@
 				
 				// Show for a short period of time
 				togglePlaylistView();
-				setTimeout(function() {
-					togglePlaylistView();
-				}, 3000);
 				
-				// Play first track
-				play(0);
+				album.tracks.forEach(function(track, index) {
+					goear.getSongUrls(track).then(function(data) {
+						if (data.tracks.length) {
+							var $track = $playlist.findEl('.track[data-index="' + this + '"]');
+							currentAlbum.tracks[this].files = data.tracks.map(function(gt) {
+								return gt.link;
+							});
+							if (data.tracks.length < 2) {
+								$track.findEl('.change').setStyle('display', 'none');
+							}
+							$track.findEl('.actions div').setStyle('visibility', 'visible');
+							$track.findEl('.download').attr('href', currentAlbum.tracks[this].files[0]);
+							if (this === 0) {
+								play(0);
+							}
+						}
+					}.bind(index), function(err) {
+						console.warn('PlayerModule::listenToApp::playAlbum# No files for track:', album.tracks[this]);
+					}.bind(index));
+				});
 			});
 		}
 
@@ -84,7 +97,6 @@
 			});
 
 			$playlist.listen('click', 'change', function(event, $target) {
-				// TODO Check if this is the current playing track
 				if ($target.parent('track').attr('data-index') == currentTrackIndex) {
 					console.debug('Available files:', availableFiles);
 					if (availableFiles && availableFiles.length > 1) {
@@ -97,6 +109,7 @@
 						$player.el.src = availableFiles[currentFileIndex].link;
 						$player.el.load();
 						$player.el.play();
+						// TODO Change download link
 					}
 				}
 			});
