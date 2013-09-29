@@ -25,9 +25,5 @@
   },
   "repository": "https://github.com/PaquitoSoft/music-center",
   "author": "PaquitoSoft",
-  "license": "MIT",
-  "engines": {
-  	"node": "0.10.x",
-  	"npm": "1.3.x"
-  }
+  "license": "MIT"
 }
