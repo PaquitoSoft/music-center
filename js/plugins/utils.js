@@ -1,4 +1,5 @@
 (function(core) {
+	'use strict';
 	
 	core.register('plugins/utils', function(context) {
 

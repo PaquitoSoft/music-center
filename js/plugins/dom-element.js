@@ -75,7 +75,15 @@
 				return this;
 			},
 			click: function() {
-				this.el.click();
+				var e;
+				if (this.el.click) {
+					this.el.click();
+				} else {
+					e = document.createEvent('MouseEvents');
+					e.initMouseEvent('click', true, true, window);
+					this.el.dispatchEvent(e);
+				}
+				
 			},
 
 			content: function content(newContent) {

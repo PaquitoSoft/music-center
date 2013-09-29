@@ -1,4 +1,5 @@
 (function(core, Q) {
+	'use strict';
 	
 	core.register('plugins/ajax', ['plugins/utils'], function(context, utils) {
 

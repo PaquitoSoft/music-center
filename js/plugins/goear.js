@@ -30,7 +30,7 @@
 					find(searchTerm).then(function(data) {
 						deferred.resolve(data);
 					}, function(err) {
-						deferred.reject(err);		
+						deferred.reject(err);
 					});
 				} else {
 					deferred.resolve(data);
