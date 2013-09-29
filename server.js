@@ -1,17 +1,29 @@
 var connect = require('connect'),
 	fs = require('fs');
 
-var SERVER_PORT = 3003;
+var SERVER_PORT = process.env.PORT || 3003;
+var environment = process.env.NODE_ENV || 'local';
 
-var app = connect()
-	.use(connect.logger('dev'))
-	.use(connect.compress())
-	// .use(connect.static(__dirname, {maxAge: 365 * 24 * 3600 * 1000})) // One year static content expiration
-	.use(connect.static(__dirname + '/dist', {maxAge: 365 * 24 * 3600 * 1000})) // One year static content expiration
-	.use(function(req, res) {
+var filesPath = __dirname + '/dist';
+var middleware = [];
+
+if (environment !== 'production') {
+	filesPath = __dirname;
+	middleware.push(connect.logger('dev'));
+}
+
+middleware = middleware.concat([
+	connect.compress(),
+	connect.static(filesPath, {maxAge: 365 * 24 * 3600 * 1000}), // One year static content expiration
+	function(req, res) {
 		res.end('This is a static content server.');
-		// fs.createReadStream('dist/index.html').pipe('res');
-	});
+	}
+]);
+
+var app = connect();
+middleware.forEach(function(mid) {
+	app.use(mid);
+});
 
 app.listen(SERVER_PORT, function() {
 	console.log('Server listening on port:', SERVER_PORT);
