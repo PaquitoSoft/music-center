@@ -13,6 +13,9 @@
 			lastFm.searchArtist($searchText.value(), { withAlbums: true }).then(function(artists) {
 				events.trigger('new-search-results', artists);
 				dom.hideLoader();
+			}, function(err) {
+				// TODO Tell the user there was a problem searching
+				dom.hideLoader();
 			});
 		}
 

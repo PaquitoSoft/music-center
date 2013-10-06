@@ -7,7 +7,9 @@
 	+ Gestionar nombres de canciones muy grandes
 	+ Gestionar el alto de la playlist para que tenga un máximo a partir del cual aparezca la barra de scroll
 	+ El scroll vertical de la pantalla solo debería afectar a la zona de resultados
-
+	+ MAC OS Firefox does not like audio/mpeg mime type
+		<embed type="audio/mpeg" src="http://live3.goear.com/listen/d67ecea8f770216af24c82677cb91b86/52487fe7/sst8/mp3files/29122011/ac768a86bc1fea2e15aa0604cef4a2b3.mp3" name="plugin" height="100%" width="100%">
+	+ Playlist UI is broken in Firefox
 
 
 ============================

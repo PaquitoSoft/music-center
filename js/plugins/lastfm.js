@@ -136,11 +136,13 @@
 					var promises = artists.map(function(artist) {
 						return getArtistAlbums(artist);
 					});
-					Q.all(promises).then(function(artistsAlbums) {
-						defer.resolve(artists.map(function(art, i) {
-							art.albums = artistsAlbums[i];
-							return art;
-						}));
+					Q.allSettled(promises).then(function(results) {
+						results.forEach(function(result, i) {
+							if (result.state === 'fulfilled') {
+								artists[i].albums = result.value;
+							}
+						});
+						defer.resolve(artists);
 					}, function(aErr) {
 						defer.reject(aErr);
 					});
