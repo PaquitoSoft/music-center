@@ -62,9 +62,12 @@
 
 				// Create playlist
 				$playlist.content(templates.render('playlistTpl', album));
+				$playlist.setStyle('max-height', (document.height - 300) + 'px');
 				
 				// Show for a short period of time
-				togglePlaylistView();
+				if (!$playlist.data('visible')) {
+					togglePlaylistView();
+				}
 				
 				album.tracks.forEach(function(track, index) {
 					goear.getSongUrls(track).then(function(data) {

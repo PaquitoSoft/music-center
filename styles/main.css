@@ -125,10 +125,22 @@
 	background-color: #2c2c2c;
 	border-radius: 0 5px 5px 0;
 	transition: 350ms left;
+
+	max-width: 36%;
+	overflow-y: auto; 
 }
 .playlist.visible {
 	left: 0px;
 }
+
+::-webkit-scrollbar { width: 3px; height: 3px;}
+::-webkit-scrollbar-button {  background-color: #666; }
+::-webkit-scrollbar-track {  background-color: #999;}
+::-webkit-scrollbar-track-piece { background-color: #ffffff;}
+::-webkit-scrollbar-thumb { height: 50px; background-color: #666; border-radius: 3px; width: 25px;}
+::-webkit-scrollbar-corner { background-color: #999;}}
+::-webkit-resizer { background-color: #666;}
+
 
 .playlist table {
 	width: 100%;
