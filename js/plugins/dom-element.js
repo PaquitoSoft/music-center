@@ -101,6 +101,9 @@
 				return this.el.innerText;
 			},
 
+			getStyle: function(name) {
+				return this.el.style[name];
+			},
 			setStyle: function(name, value) {
 				if (typeof name === 'object') {
 					Object.keys(name).forEach(function(styleName) {

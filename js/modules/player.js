@@ -62,7 +62,7 @@
 
 				// Create playlist
 				$playlist.content(templates.render('playlistTpl', album));
-				$playlist.setStyle('max-height', (document.height - 300) + 'px');
+				$playlist.setStyle('maxHeight', (document.documentElement.clientHeight - 300) + 'px');
 				
 				// Show for a short period of time
 				if (!$playlist.data('visible')) {
@@ -103,13 +103,13 @@
 				if ($target.parent('track').attr('data-index') == currentTrackIndex) {
 					console.debug('Available files:', availableFiles);
 					if (availableFiles && availableFiles.length > 1) {
-						console.debug('Current file:', availableFiles[currentFileIndex].link);
+						console.debug('Current file:', availableFiles[currentFileIndex]);
 						currentFileIndex = (currentFileIndex >= availableFiles.length - 1) ? 0 : currentFileIndex + 1;
-						console.debug('New file:', availableFiles[currentFileIndex].link);
+						console.debug('New file:', availableFiles[currentFileIndex]);
 
 
 						// TODO DRY!!!
-						$player.el.src = availableFiles[currentFileIndex].link;
+						$player.el.src = availableFiles[currentFileIndex];
 						$player.el.load();
 						$player.el.play();
 						// TODO Change download link

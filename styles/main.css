@@ -133,7 +133,7 @@
 	left: 0px;
 }
 
-::-webkit-scrollbar { width: 3px; height: 3px;}
+::-webkit-scrollbar { width: 7px; height: 3px;}
 ::-webkit-scrollbar-button {  background-color: #666; }
 ::-webkit-scrollbar-track {  background-color: #999;}
 ::-webkit-scrollbar-track-piece { background-color: #ffffff;}
@@ -141,6 +141,30 @@
 ::-webkit-scrollbar-corner { background-color: #999;}}
 ::-webkit-resizer { background-color: #666;}
 
+
+@-moz-document url-prefix(http://),url-prefix(https://) {
+scrollbar {
+   -moz-appearance: none !important;
+   background: rgb(0,255,0) !important;
+}
+thumb,scrollbarbutton {
+   -moz-appearance: none !important;
+   background-color: rgb(0,0,255) !important;
+}
+
+thumb:hover,scrollbarbutton:hover {
+   -moz-appearance: none !important;
+   background-color: rgb(255,0,0) !important;
+}
+
+scrollbarbutton {
+   display: none !important;
+}
+
+scrollbar[orient="vertical"] {
+  min-width: 15px !important;
+}
+}
 
 .playlist table {
 	width: 100%;
@@ -190,7 +214,7 @@
 	border-radius: 5px;
 }
 .playlist .actions {
-	width: 22%;
+	width: 90px;
 	text-align: right;
 }
 .playlist .actions div {
